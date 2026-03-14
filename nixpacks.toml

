@@ -1,0 +1,14 @@
+# nixpacks.toml - Tells Railway how to build Node + Prisma correctly
+
+[phases.setup]
+  nixPkgs = ['nodejs_20', 'openssl_3']
+
+[phases.build]
+  cmds = [
+    'npm install',
+    'npx prisma generate',
+    'npx prisma db push --accept-data-loss'  # --accept-data-loss for initial push if schema changes
+  ]
+
+[start]
+  cmd = 'npm start'
