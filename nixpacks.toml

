@@ -1,12 +1,11 @@
 [phases.setup]
-nixPkgs = ['nodejs_20', 'openssl_3']
+  nixPkgs = ['nodejs_20', 'openssl_3']
 
 [phases.build]
-cmds = [
-  'npm install --production',
-  'npx prisma generate',
-  'npx prisma db push --accept-data-loss'
-]
+  cmds = [
+    'npm install --production',
+    'npx prisma generate'
+  ]
 
 [start]
-cmd = 'node server.js'
+  cmd = 'npx prisma db push --accept-data-loss && node server.js'
